@@ -1,2 +1,3 @@
-# Data_Visualization_for_PricePredictions
-These plots are used to visualize the relationship between the clarity of the dimonds and their prices. 
+# Data visualization for predicting diamonds' prices
+This R Markdown file illustrates how to create plots to visualize the relationship between the clarity of the dimonds and their prices. 
+The package "ggplot2" is used. 
