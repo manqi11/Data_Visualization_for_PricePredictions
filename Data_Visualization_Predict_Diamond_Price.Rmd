@@ -1,0 +1,51 @@
+---
+title: "Data Visualization for predicting dimonds'prices based on their clarity"
+author: Peiyun Zhou
+output: pdf_document
+---
+
+This is an example using ggplot to visualize the data 
+The Research Question is  "Does a better clarity always mean a higher sale price?""
+
+```{r cars}
+library(ggplot2) # load the library
+# one way to load the dimond data
+# mydata<-read.csv((file.choose())) 
+# Another way to load the data
+# setwd("The directory of where the file is located") # Set working directory 
+mydata<-read.csv("Mispriced-Diamonds.csv",header=T,sep=",")
+```
+
+First, let's plot the relationship between the size of carat and the sale prices
+
+```{r pressure, echo=TRUE}
+ggplot(data=mydata,aes(x=carat,y=price))+
+  geom_point()
+```
+Then, let's use different colors to show the clarity 
+
+```{r, echo=TRUE}
+ggplot(data=mydata,aes(x=carat,y=price,colour=clarity))+
+  geom_point()
+```
+
+We can adjust the transparency of the dots by changing the alpha value. 
+
+```{r, echo=TRUE}
+ggplot(data=mydata,aes(x=carat,y=price,colour=clarity))+
+  geom_point(alpha=0.1)
+```
+
+We will look at the diamonds that are smaller than 2 carets and add smooth lines to illustrate the patterns. Based on the plot below, we found that clarity and price is not always a positive linear relationship. Depends on how big the diamond is, the price differ based on its clarity. 
+
+```{r, echo=TRUE}
+ggplot(data=mydata[mydata$carat<2,],aes(x=carat,y=price,colour=clarity))+
+  geom_point(alpha=0.1)+
+  geom_smooth()
+```
+
+We can also look the price for each dimond based on their clarity and carat size
+
+```{r, echo=TRUE}
+qplot(data=diamonds,carat,price,colour=clarity,facets=.~clarity)
+```
